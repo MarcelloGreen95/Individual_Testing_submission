@@ -5,7 +5,7 @@ from src.main import Main
 from src.LogIn import LogIn
 from src.Customers import Customers
 from src.ReadCSVFile import ReadCSVFile
-from faker import Faker
+
 
 
 class Test_LogIn(unittest.TestCase):
