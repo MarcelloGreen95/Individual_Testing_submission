@@ -4,7 +4,7 @@ from src.CSVStub import CSVStub
 from src.main import Main
 from src.LogIn import LogIn
 from src.Customers import Customers
-##from src import ReadCSVFile
+from src.ReadCSVFile import ReadCSVFile
 from faker import Faker
 
 
