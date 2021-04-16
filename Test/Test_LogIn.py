@@ -1,10 +1,11 @@
 import unittest
 from unittest.mock import MagicMock
+from src.CSVStub import CSVStub
 from src.main import Main
 from src.LogIn import LogIn
 from src.Customers import Customers
 from src.ReadCSVFile import ReadCSVFile
-import faker
+from faker import Faker
 
 
 class Test_LogIn(unittest.TestCase):
@@ -26,15 +27,21 @@ class Test_LogIn(unittest.TestCase):
         propertyData.append("Customers")
         propertyData.append("derek.somerville@glasgow.ac.uk, matthew.barr@glasgow.ac.uk")
 
-        self.LogIn.property = []
-        self.LogIn.config.getConfig = MagicMock(return_value=propertyData)
-        result = self.LogIn.getCustomers()
+        self.logIn.property = []
+        self.logIn.config.getConfig = MagicMock(return_value=propertyData)
+        result = self.logIn.getCustomers()
 
         self.assertEqual(['Customers'], result)
 
     def test_mockEnterUserPassword(self):
         LogIn.getUserInfo = MagicMock(return_value='matthew.barr@glasgow.ac.uk')
         self.assertEqual('Enter password', self.logIn.display())
+
+    def test_getCustomerDataFromStub(self):
+        self.main.setConfig(CSVStub)
+        customerData = self.main.property
+        customerColumns = customerData[0]
+        self.assertEqual(customerColumns, "Email")
 
 
 if __name__ == '__main__':

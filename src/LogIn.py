@@ -29,7 +29,7 @@ class LogIn:
         return result
 
     def getCustomers(self):
-        pass
+        return self.getCustomers()
 
     def display(self):
         return self.logIn()
