@@ -8,9 +8,13 @@ import faker
 
 
 class Test_LogIn(unittest.TestCase):
-    LogIn = LogIn()
+    logIn = LogIn()
     main = Main()
     Customers = Customers()
+
+    def __init__(self, methodName: str = ...):
+        super().__init__(methodName)
+        self.readCSVFile = None
 
     def test_CustomerInfo(self):
         customerInfo = self.readCSVFile.getFiledata("Customer/", "customer.csv")
@@ -30,7 +34,7 @@ class Test_LogIn(unittest.TestCase):
 
     def test_mockEnterUserPassword(self):
         LogIn.getUserInfo = MagicMock(return_value='matthew.barr@glasgow.ac.uk')
-        self.assertEqual('Enter password', LogIn.display())
+        self.assertEqual('Enter password', self.logIn.display())
 
 
 if __name__ == '__main__':

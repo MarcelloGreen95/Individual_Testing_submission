@@ -2,6 +2,9 @@ from src.Customers import Customers
 
 
 class LogIn:
+    def __init__(self):
+        self.config = None
+
     def Get_Password(self, emailAddress):
         customers = Customers()
         customerData = customers.Load_Customers()
@@ -17,9 +20,16 @@ class LogIn:
         emailAddress = input("Enter your email address")
         password = self.Get_Password(emailAddress)
         if password == "":
-            print("You are not a user")
+            result = "You are not a user"
         else:
             if input("Enter password") == password:
-                print("You are logged in")
+                result = "You are logged in"
             else:
-                print("Wrong password, no second chances")
+                result = "Wrong password, no second chances"
+        return result
+
+    def getCustomers(self):
+        pass
+
+    def display(self):
+        return self.logIn()
