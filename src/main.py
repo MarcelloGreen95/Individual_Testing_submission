@@ -1,4 +1,5 @@
 from src.LogIn import LogIn
+from src.NewCustomer import NewCustomer
 
 
 class Main:
@@ -8,6 +9,8 @@ class Main:
     def main(self):
         logIn = LogIn()
         print(logIn.logIn())
+        newCustomer = NewCustomer()
+        newCustomer.NewCustomer()
 
     def setConfig(self, CSVStub):
         pass

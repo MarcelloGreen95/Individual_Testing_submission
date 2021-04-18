@@ -5,20 +5,20 @@ class LogIn:
     def __init__(self):
         self.config = None
 
-    def Get_Password(self, emailAddress):
+    def Get_Password(self, phoneNumber):
         customers = Customers()
         customerData = customers.Load_Customers()
         password = ""
         counter = 0
         while password == "" and counter < len(customerData):
-            if emailAddress == customerData[counter][0]:
+            if phoneNumber == customerData[counter][0]:
                 password = customerData[counter][3]
             counter += 1
         return password
 
     def logIn(self):
-        emailAddress = input("Enter your email address")
-        password = self.Get_Password(emailAddress)
+        phoneNumber = input("Enter your email address")
+        password = self.Get_Password(phoneNumber)
         if password == "":
             result = "You are not a user"
         else:

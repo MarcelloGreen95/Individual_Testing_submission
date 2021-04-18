@@ -7,13 +7,12 @@ from src.Customers import Customers
 from src.ReadCSVFile import ReadCSVFile
 
 
-
 class Test_LogIn(unittest.TestCase):
     logIn = LogIn()
     main = Main()
     customers = Customers()
 
-    listOfFakeEmails = ['derek.somerville@glasgow.ac.uk', 'matthew.barr@glasgow.ac.uk']
+    listOfFakeNumbers = ['07946450569', '07958963214']
 
     def __init__(self, methodName: str = ...):
         super().__init__(methodName)
@@ -27,7 +26,7 @@ class Test_LogIn(unittest.TestCase):
     def test_mockSingleResult(self):
         propertyData = []
         propertyData.append("Customers")
-        propertyData.append("derek.somerville@glasgow.ac.uk, matthew.barr@glasgow.ac.uk")
+        propertyData.append("07946450569, 07958963214")
 
         self.logIn.property = []
         self.logIn.config.getConfig = MagicMock(return_value=propertyData)
@@ -36,19 +35,19 @@ class Test_LogIn(unittest.TestCase):
         self.assertEqual(['Customers'], result)
 
     def test_mockEnterUserPassword(self):
-        LogIn.getUserInfo = MagicMock(return_value='matthew.barr@glasgow.ac.uk')
+        LogIn.getUserInfo = MagicMock(return_value='07946450569')
         self.assertEqual('Enter password', self.logIn.display())
 
     def test_getCustomerDataFromStub(self):
         self.main.setConfig(CSVStub)
         customerData = self.main.property
         customerColumns = customerData[0]
-        self.assertEqual(customerColumns, "Email")
+        self.assertEqual(customerColumns, "phoneNumber")
 
     def test_FakeList(self):
         displayFakeList = LogIn()
-        fakeEmails = Test_LogIn.listOfFakeEmails
-        displayFakeList.getCustomers = MagicMock(return_value=fakeEmails.pop())
+        fakeNumbers = Test_LogIn.listOfFakeNumbers
+        displayFakeList.getCustomers = MagicMock(return_value=fakeNumbers.pop())
         self.assertEqual('Enter password', displayFakeList.display())
 
 
